@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+.eslintrc.json
+node_modules/
+.local_server
+logs/*
+!logs/.gitkeep
