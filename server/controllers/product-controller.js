@@ -3,12 +3,11 @@
 const ProductCollection = require('../models/product-collection');
 const Http400Exception  = require('../exceptions/http-400-exception');
 const Http404Exception  = require('../exceptions/http-404-exception');
-const data              = require('../data');
+const data              = require('../stubs/data');
 
 class ProductController {
 
     /**
-     *
      * @param req
      * @param  res
      * @returns {*|Promise<any>}

@@ -8,5 +8,5 @@
  */
 
 module.exports = {
-    'title': 'Web Starter Template',
+    title: 'Web Starter Template',
 };
