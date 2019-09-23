@@ -106,3 +106,43 @@ The data in the data.js file uses the following JSON Schema:
 * Please DELETE the node_modules folder prior to sending your code for review
 * Don't forget to include CSS/SCSS styling
 * If any additional commands  are necessary to run your code, please make sure this is documented
+
+## Project Technical info
+### Backend
+* `Express` library used to manage backend general features like:
+  * Middleware
+    * CORS middleware to accept requests from different domain.
+    * Routes middleware
+    * Error Handler middleware
+      * Error handler will format errors in a json schema with adding 
+        * Message
+        * ErrorCode
+        * StatusCode (If the exception was a Http exception instance)
+  * Routes
+    * Handling endpoints with express route middleware
+  * Handle requests and responses
+  * Format responses
+* Use Controller class to handle requests. Controllers has static methods to use directly in Express Route endpoints
+* Use Config library to handle different environments configs you can see the default config under `./config/default.json`
+* Define application specific exceptions class to handle exceptions in custom ways 
+  * AppException
+    * HttpException
+      * Http400Exception
+      * Http404Exception
+* Define Main Model class to implement ORM modeling data entities
+  * This model class is using Proxy class to implement Model object `get` & `set` and other magic methods
+* Define Model Collection classes to manage data collections it's a simple collection method implementation
+* Define Schemas to have same understanding on entity fields and types and at the same time use for validation methods
+* Add `.editorconfig` & `.jshintrc` files to have a same code formatting schema
+* Add `.gitignore` file to prevent sending node modules and build files
+* Use `Lodash` package to have arrays, collections, objects iteration and methods
+### Frontend
+* Define two component
+  * `ProductList` to handle the products list
+  * `ProductItem` to handle the product item
+* Define `Product` Service class to send search request and send back the response
+* Use `axios` package to send ajax requests and handle responses
+
+## ToDos
+* Use Transformer
+* Use monolog error logger

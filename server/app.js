@@ -19,7 +19,3 @@ app.listen(
         console.log(`[Server running on ${config.get('server.host')}:${config.get('server.port')}]`);
     },
 );
-
-// Use Transformer
-// Use monolog error logger
-// Use JWT Auth Middleware
