@@ -19,7 +19,7 @@ header.menu {
         background-color: black;
         padding: 0 20px;
         text-align: left;
-        
+
         div.menu-holder {
             position: relative;
             width: 100%;
@@ -35,15 +35,17 @@ header.menu {
             text-align: left;
             display: inline-block;
         }
+
         nav {
             display: inline-block;
             margin-left: 60px;
 
-            i { 
-                color: white; 
+            i {
+                color: white;
                 font-size: 30px;
                 line-height: $lineHeightForNav;
             }
+
             i.search {
                 position: absolute;
                 right: 10px;
@@ -68,20 +70,29 @@ header.menu {
         position: absolute;
         background-color: white;
         z-index: 20;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         width: 100%;
         padding: 5px;
         background-color: white;
         border-bottom: 1px solid #CCC;
         display: none;
-        &.showing { display: block; }
-        
+
+        &.showing {
+            display: block;
+        }
+
         input[type='text'] {
             min-width: 100%;
             font-size: 36px;
             line-height: $lineHeightForSearch;
-            border: 1px solid #CCC;
+            border: none;
+            border-bottom: 1px solid #CCC;
             padding: 0 10px;
+
+            &:focus {
+                border: none;
+                outline: none;
+            }
         }
 
         i.close {
@@ -90,7 +101,22 @@ header.menu {
             top: 5px;
             font-size: 36px;
             line-height: $lineHeightForSearch;
+            color: #CCCCCC;
+        }
+
+        .search-message {
+            margin: 10px 0 10px 10px;
+            color: #CCCCCC;
+            font-size: 12px;
+        }
+
+        .search-result-count {
+            margin: 10px 0 10px 10px;
+            padding: 10px 0;
+            text-transform: uppercase;
+            font-size: 12px;
+            border: solid #CCCCCC;
+            border-width: 1px 0 1px 0;
         }
     }
-
 }

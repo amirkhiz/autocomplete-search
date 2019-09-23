@@ -5,6 +5,8 @@
 import React   from 'react';
 import Product from '../services/product';
 
+import ProductList from '../components/product-list';
+
 class Menu extends React.Component {
 
     /**
@@ -16,6 +18,8 @@ class Menu extends React.Component {
 
         this.state = {
             showingSearch: false,
+            products     : [],
+            searchMessage: '',
         };
 
         this.productService = new Product();
@@ -30,10 +34,32 @@ class Menu extends React.Component {
         e.preventDefault();
 
         this.setState(
-            {
-                showingSearch: !this.state.showingSearch,
+            {showingSearch: !this.state.showingSearch},
+            // Use callback to set focus on search input box.
+            () => {
+                if (this.state.showingSearch) {
+                    this.searchInput.focus();
+                }
             },
         );
+    }
+
+    /**
+     * Clear search content and result
+     * @param event
+     */
+    clearSearch(event) {
+        event.preventDefault();
+
+        this.setState(
+            {
+                showingSearch: !this.state.showingSearch,
+                products     : [],
+                searchMessage: '',
+            },
+        );
+
+        this.searchInput.value = '';
     }
 
     /**
@@ -42,13 +68,27 @@ class Menu extends React.Component {
      * @param event [Object] - the event from a text change handler
      */
     onSearch(event) {
-        let term = event.target.value;
+        let term = event.target.value.trim();
 
+        this.setState({products: [], searchMessage: ''});
+
+        // Return false if term is empty po is less than 3 characters
         if (!term || term.length < 3) {
             return null;
         }
 
-        this.productService.search(term);
+        this.productService.search(term, (error, response) => {
+            if (error) {
+                console.warn(error.message);
+                this.setState({searchMessage: 'There is no result. Please try with another terms.'});
+
+                return;
+            }
+
+            if (response.data) {
+                this.setState({products: response.data});
+            }
+        });
     }
 
     /**
@@ -79,15 +119,18 @@ class Menu extends React.Component {
                     </div>
                 </div>
                 <div className={(this.state.showingSearch ? 'showing ' : '') + 'search-container'}>
-                    <input type="text" onChange={(e) => this.onSearch(e)}/>
-                    <a href="#" onClick={(e) => this.showSearchContainer(e)}>
+                    <input type="text" onChange={(e) => this.onSearch(e)} ref={(input) => {
+                        this.searchInput = input;
+                    }} placeholder="Enter Search Term"/>
+                    <a href="javascript:;" className="close-search-btn" onClick={(e) => this.clearSearch(e)}>
                         <i className="material-icons close">close</i>
                     </a>
+                    <ProductList products={this.state.products}/>
+                    <p className="search-message">{this.state.searchMessage}</p>
                 </div>
             </header>
         );
     }
-
 }
 
 // Export out the React Component

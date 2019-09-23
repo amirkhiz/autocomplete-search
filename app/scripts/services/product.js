@@ -10,6 +10,7 @@ class Product {
      * Product constructor
      */
     constructor() {
+        // TODO Read this value from config
         this._baseUrl = 'http://localhost:3035/';
         this._request = axios.create(
             {
@@ -25,11 +26,12 @@ class Product {
 
     /**
      * @param {string} term
+     * @param {function} callback - (error, response) => { }
      */
-    search(term) {
+    search(term, callback) {
         this._request.get(`search/${term}`)
-            .then(response => console.log('RESPONSE ::: ', response.data))
-            .catch(error => console.warn('ERROR ::: ', error.message));
+            .then(response => callback(null, response))
+            .catch(error => callback(error));
     }
 }
 

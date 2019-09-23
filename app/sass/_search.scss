@@ -1,0 +1,69 @@
+/**
+ * It contains the styles for the search results and items.
+ */
+
+.products-list {
+    clear: both;
+
+    .product-item {
+        float: left;
+        width: 25%;
+        padding: 15px;
+        height: calc(100vw / 2.5);
+        margin-bottom: 15px;
+
+        .product-image-wrapper {
+            float: left;
+            width: 35%;
+            padding: 0 25px;
+
+            .product-image {
+                width: 100%;
+            }
+        }
+
+        .product-description-wrapper {
+            float: left;
+            width: 65%;
+
+            .product-name {
+                font-size: 15px;
+                text-transform: uppercase;
+                font-weight: bold;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+            }
+
+            .product-about {
+                letter-spacing: 1px;
+                font-size: 11px;
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .products-list {
+        .product-item {
+            width: 100%;
+            height: auto;
+
+            .product-image-wrapper {
+                width: 25%;
+            }
+
+            .product-description-wrapper {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 620px) and (max-width: 1023px) {
+    .products-list {
+        .product-item {
+            width: 50%;
+        }
+    }
+}
